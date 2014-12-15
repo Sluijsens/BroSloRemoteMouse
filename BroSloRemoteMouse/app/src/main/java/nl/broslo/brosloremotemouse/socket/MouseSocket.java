@@ -1,6 +1,7 @@
-package nl.broslo.brosloremotemouse;
+package nl.broslo.brosloremotemouse.socket;
 
 import android.util.Log;
+import android.view.InputEvent;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -9,7 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.broslo.brosloremotemouse.socket.Test;
+import nl.broslo.brosloremotemouse.MainActivity;
 
 /**
  * Created by Bryan on 13-12-2014.
@@ -20,7 +21,7 @@ public class MouseSocket implements Runnable {
     private String ipAddress;
     private int port;
 
-    private List<Test> actions = new ArrayList<>();
+    private List<SocketAction> actions = new ArrayList<>();
 
     public MouseSocket(String ipAddress, int port) {
 
@@ -32,7 +33,7 @@ public class MouseSocket implements Runnable {
         running = false;
     }
 
-    public void addAction(Test action) {
+    public void addAction(SocketAction action) {
 
         actions.add(action);
     }
@@ -52,18 +53,15 @@ public class MouseSocket implements Runnable {
                     while (running) {
                         try {
                             if(!actions.isEmpty()) {
-                                Thread.sleep(100);
-                                Test socketAction = actions.get(0);
+
+                                SocketAction socketAction = actions.get(0);
                                 oos.writeObject(socketAction);
-                                System.out.println("Socket Action: " + socketAction.getTest());
+                                System.out.println("Socket Action: " + socketAction.toString());
                                 oos.flush();
                                 actions.remove(0);
                             }
                         } catch (IOException e) {
                             System.out.println("Connection closed by server!");
-                            running = false;
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                             running = false;
                         }
                     }

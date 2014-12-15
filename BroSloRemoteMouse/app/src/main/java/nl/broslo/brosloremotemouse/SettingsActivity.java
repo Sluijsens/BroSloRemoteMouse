@@ -37,6 +37,13 @@ public class SettingsActivity extends MainActivity {
                 startMouseActivity();
             }
         });
+
+//
+//        System.out.println("SocketAction: " + new SocketAction("SocketAction"));
+//        System.out.println("Not SocketAction: " + test);
+//
+//        NotificationSimple notTest = (NotificationSimple) test;
+//        System.out.println("cast test: " + .getTitle());
     }
 
     /**

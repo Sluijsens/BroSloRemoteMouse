@@ -1,4 +1,3 @@
-package nl.broslo.brosloremotemouse;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -6,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -24,6 +24,10 @@ public class Settings {
     private volatile Thread serverThread;
 
     public Settings() {
+
+        System.out.println("\nLeft Click: " + MouseEvent.BUTTON1_MASK +
+                "\nRight Click: " + MouseEvent.BUTTON3_MASK);
+
         try {
             textFieldIpAddress.setText(InetAddress.getLocalHost().getHostAddress());
         } catch (UnknownHostException e) {

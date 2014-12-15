@@ -3,13 +3,15 @@ package nl.broslo.brosloremotemouse;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import nl.broslo.brosloremotemouse.customviews.GestureOverlayCustomView;
-import nl.broslo.brosloremotemouse.socket.Test;
+import nl.broslo.brosloremotemouse.socket.MouseSocket;
+import nl.broslo.brosloremotemouse.socket.SocketAction;
 
 /**
  * Created by Bryan on 12-12-2014.
@@ -30,12 +32,23 @@ public class MouseActivity extends MainActivity {
         linearLayoutMouseActivity = (LinearLayout) findViewById(R.id.LinearLayout_MouseActivity);
 
         ImageView imageButtonLeftClick = (ImageView) findViewById(R.id.ImageButton_LeftClick);
-        imageButtonLeftClick.setOnClickListener(new View.OnClickListener() {
+        imageButtonLeftClick.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                mouseSocket.addAction(new Test("Test String"));
+            public boolean onTouch(View v, MotionEvent event) {
 
-//                mouseSocket.addAction(new SocketAction(SocketAction.ACTION_MOUSE_CLICK, KeyEvent.KEYCODE_BUTTON_1));
+                SocketAction socketAction;
+
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        socketAction = new SocketAction(SocketAction.ACTION_MOUSE_DOWN, 16);
+                        mouseSocket.addAction(socketAction);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        socketAction = new SocketAction(SocketAction.ACTION_MOUSE_UP, 16);
+                        mouseSocket.addAction(socketAction);
+                        return true;
+                }
+                return false;
             }
         });
 
@@ -58,13 +71,23 @@ public class MouseActivity extends MainActivity {
         });
 
         ImageView imageButtonRightClick = (ImageView) findViewById(R.id.ImageButton_RightClick);
-        imageButtonRightClick.setOnClickListener(new View.OnClickListener() {
+        imageButtonRightClick.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onTouch(View v, MotionEvent event) {
 
-//                SocketAction socketAction = new SocketAction(SocketAction.ACTION_MOUSE_CLICK, KeyEvent.KEYCODE_BUTTON_3);
+                SocketAction socketAction;
 
-//                mouseSocket.addAction(socketAction);
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        socketAction = new SocketAction(SocketAction.ACTION_MOUSE_DOWN, 4);
+                        mouseSocket.addAction(socketAction);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        socketAction = new SocketAction(SocketAction.ACTION_MOUSE_UP, 4);
+                        mouseSocket.addAction(socketAction);
+                        return true;
+                }
+                return false;
             }
         });
 
@@ -87,8 +110,6 @@ public class MouseActivity extends MainActivity {
     protected void onStop() {
         super.onStop();
 
-        //hideSoftKeyboard();
-
         mouseSocket.terminate();
         try {
             mouseThread.join();
@@ -102,16 +123,10 @@ public class MouseActivity extends MainActivity {
         inputMethodManager.toggleSoftInputFromWindow(linearLayoutMouseActivity.getApplicationWindowToken(), InputMethodManager.SHOW_FORCED, 0);
     }
 
-    public void hideSoftKeyboard() {
-        InputMethodManager imm = (InputMethodManager)
-                getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
-    }
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
-//        mouseSocket.addAction(new SocketAction(SocketAction.ACTION_KEYBOARD_TYPE, keyCode));
+        mouseSocket.addAction(new SocketAction(SocketAction.ACTION_KEYBOARD_TYPE, keyCode));
 
         return false;
     }

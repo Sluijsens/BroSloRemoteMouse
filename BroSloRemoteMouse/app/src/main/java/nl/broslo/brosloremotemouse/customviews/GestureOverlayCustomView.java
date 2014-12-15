@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import nl.broslo.brosloremotemouse.MainActivity;
+import nl.broslo.brosloremotemouse.MouseActivity;
+import nl.broslo.brosloremotemouse.socket.MouseMovement;
+import nl.broslo.brosloremotemouse.socket.SocketAction;
 
 /**
  * Created by Bryan on 14-12-2014.
@@ -40,19 +43,21 @@ public class GestureOverlayCustomView extends GestureOverlayView {
         switch(action) {
             case MotionEvent.ACTION_MOVE:
 
-                float hx = event.getHistoricalX(0);
-                float hy = event.getHistoricalY(0);
+                if(event.getHistorySize() > 0) {
+                    float hx = event.getHistoricalX(0);
+                    float hy = event.getHistoricalY(0);
 
-                float x = event.getX();
-                float y = event.getY();
+                    float x = event.getX();
+                    float y = event.getY();
 
-                double moveX = x - hx;
-                double moveY = y - hy;
+                    double moveX = x - hx;
+                    double moveY = y - hy;
 
-//                ((MouseActivity)getContext()).mouseSocket.addAction(new SocketAction(SocketAction.ACTION_MOUSE_MOVE, new MouseMovement(moveX, moveY)));
+                    ((MouseActivity)getContext()).mouseSocket.addAction(new SocketAction(SocketAction.ACTION_MOUSE_MOVE, new MouseMovement(moveX, moveY)));
 
-                Log.d(MainActivity.DEBUG_TAG, "X (current, historical): " + x + ", " + hx +
-                        "\nY (current, historical): " + y + ", " + hy);
+//                    Log.d(MainActivity.DEBUG_TAG, "X (current, historical): " + x + ", " + hx +
+//                            "\nY (current, historical): " + y + ", " + hy);
+                }
 
                 return true;
             default:
