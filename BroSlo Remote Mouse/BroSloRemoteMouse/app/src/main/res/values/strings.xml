@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BroSlo Remote Mouse</string>
+    <string name="app_settings">Settings</string>
+
+    <!-- Version 1.0 -->
+    <string name="txt_connect">Connect</string>
+    <string name="txt_ipaddress">IP Address</string>
+    <string name="txt_port">Port</string>
+
+</resources>
