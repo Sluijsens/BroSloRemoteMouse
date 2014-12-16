@@ -28,7 +28,7 @@ public class RemoteMouseServer implements Runnable {
         mousePointerLocation = MouseInfo.getPointerInfo().getLocation();
         try {
             robot = new Robot();
-            robot.setAutoDelay(40);
+//            robot.setAutoDelay(40);
             robot.setAutoWaitForIdle(true);
         } catch (AWTException e) {
             e.printStackTrace();
@@ -84,16 +84,20 @@ public class RemoteMouseServer implements Runnable {
                             } else if(socketAction.getKey().equals(SocketAction.ACTION_MOUSE_DOWN)) {
 
                                 robot.mousePress(socketAction.getValue());
-                                robot.delay(500);
                                 try {
-                                    Thread.sleep(600);
+                                    Thread.sleep(500);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             } else if(socketAction.getKey().equals(SocketAction.ACTION_MOUSE_UP)) {
 
+                                robot.delay(1000);
                                 robot.mouseRelease(socketAction.getValue());
-                                robot.delay(500);
+                                try {
+                                    Thread.sleep(500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
 
                         } catch (IOException e) {

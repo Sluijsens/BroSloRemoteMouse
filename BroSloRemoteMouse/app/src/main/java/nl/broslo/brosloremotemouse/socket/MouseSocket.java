@@ -56,7 +56,7 @@ public class MouseSocket implements Runnable {
 
                                 SocketAction socketAction = actions.get(0);
                                 oos.writeObject(socketAction);
-                                System.out.println("Socket Action: " + socketAction.toString());
+
                                 oos.flush();
                                 actions.remove(0);
                             }

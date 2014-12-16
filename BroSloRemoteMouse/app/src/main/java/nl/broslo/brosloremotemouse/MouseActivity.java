@@ -2,6 +2,7 @@ package nl.broslo.brosloremotemouse;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +45,12 @@ public class MouseActivity extends MainActivity {
                         mouseSocket.addAction(socketAction);
                         return true;
                     case MotionEvent.ACTION_UP:
+                        Log.d(MainActivity.DEBUG_TAG, "Action UP");
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         socketAction = new SocketAction(SocketAction.ACTION_MOUSE_UP, 16);
                         mouseSocket.addAction(socketAction);
                         return true;
@@ -83,6 +90,11 @@ public class MouseActivity extends MainActivity {
                         mouseSocket.addAction(socketAction);
                         return true;
                     case MotionEvent.ACTION_UP:
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         socketAction = new SocketAction(SocketAction.ACTION_MOUSE_UP, 4);
                         mouseSocket.addAction(socketAction);
                         return true;
