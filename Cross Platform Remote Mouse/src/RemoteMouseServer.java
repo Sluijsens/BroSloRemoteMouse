@@ -87,7 +87,7 @@ public class RemoteMouseServer implements Runnable {
 
                             } else if(socketAction.getKey().equals(SocketAction.ACTION_MOUSE_UP)) {
 
-                                robot.delay(200);
+                                robot.delay(100);
                                 robot.mouseRelease(socketAction.getValue());
 
                             } else if (socketAction.getKey().equals(SocketAction.ACTION_KEYBOARD_TYPE)) {
