@@ -90,11 +90,6 @@ public class MouseActivity extends MainActivity {
                         mouseSocket.addAction(socketAction);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                         socketAction = new SocketAction(SocketAction.ACTION_MOUSE_UP, 4);
                         mouseSocket.addAction(socketAction);
                         return true;

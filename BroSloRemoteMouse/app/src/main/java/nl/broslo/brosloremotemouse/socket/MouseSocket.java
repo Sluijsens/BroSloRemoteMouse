@@ -55,10 +55,14 @@ public class MouseSocket implements Runnable {
                             if(!actions.isEmpty()) {
 
                                 SocketAction socketAction = actions.get(0);
-                                oos.writeObject(socketAction);
 
+                                if(socketAction.getKey().equals(SocketAction.ACTION_MOUSE_DOWN)) {
+                                    Log.d(MainActivity.DEBUG_TAG, "Click");
+                                }
+
+                                oos.writeObject(socketAction);
                                 oos.flush();
-                                actions.remove(0);
+                                actions.remove(socketAction);
                             }
                         } catch (IOException e) {
                             System.out.println("Connection closed by server!");

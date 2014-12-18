@@ -84,26 +84,19 @@ public class RemoteMouseServer implements Runnable {
                             } else if(socketAction.getKey().equals(SocketAction.ACTION_MOUSE_DOWN)) {
 
                                 robot.mousePress(socketAction.getValue());
-                                robot.delay(500);
-                                robot.mouseRelease(socketAction.getValue());
-                                robot.delay(500);
-                            } else if (socketAction.getKey().equals(SocketAction.ACTION_KEYBOARD_TYPE)) {
+
+                            } else if(socketAction.getKey().equals(SocketAction.ACTION_MOUSE_UP)) {
+
                                 robot.delay(200);
+                                robot.mouseRelease(socketAction.getValue());
+
+                            } else if (socketAction.getKey().equals(SocketAction.ACTION_KEYBOARD_TYPE)) {
+
                                 robot.keyPress(socketAction.getValue());
                                 robot.delay(200);
                                 robot.keyRelease(socketAction.getValue());
+
                             }
-//                            else if(socketAction.getKey().equals(SocketAction.ACTION_MOUSE_UP)) {
-//
-//                                robot.mousePress(socketAction.getValue());
-//                                robot.delay(500);
-//                                robot.mouseRelease(socketAction.getValue());
-//                                try {
-//                                    Thread.sleep(500);
-//                                } catch (InterruptedException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
 
                         } catch (IOException e) {
                             System.out.println("Something went wrong when processing the data!");

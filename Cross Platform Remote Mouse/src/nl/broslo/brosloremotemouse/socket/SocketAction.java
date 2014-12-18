@@ -10,8 +10,8 @@ public class SocketAction implements Serializable {
     // Constants
     public static final String ACTION_MOUSE_MOVE = "Move Mouse";
     public static final String ACTION_MOUSE_CLICK = "Click Mouse";
-    public static final String ACTION_MOUSE_DOWN = "Click Mouse";
-    public static final String ACTION_MOUSE_UP = "Click Mouse";
+    public static final String ACTION_MOUSE_DOWN = "Press Mouse";
+    public static final String ACTION_MOUSE_UP = "Release Mouse";
     public static final String ACTION_KEYBOARD_TYPE = "Type Keyboard";
 
     private String key;
