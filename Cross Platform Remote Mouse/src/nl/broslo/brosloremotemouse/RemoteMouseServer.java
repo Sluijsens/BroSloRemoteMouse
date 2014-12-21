@@ -1,3 +1,5 @@
+package nl.broslo.brosloremotemouse;
+
 import javafx.scene.input.KeyCode;
 import nl.broslo.brosloremotemouse.socket.MouseMovement;
 import nl.broslo.brosloremotemouse.socket.SocketAction;
