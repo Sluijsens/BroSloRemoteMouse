@@ -133,7 +133,9 @@ public class MouseActivity extends MainActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
-        mouseSocket.addAction(new SocketAction(SocketAction.ACTION_KEYBOARD_TYPE, keyCode));
+        if(keyCodeAndroidToJava.keyCodeMap.containsKey(keyCode)) {
+            mouseSocket.addAction(new SocketAction(SocketAction.ACTION_KEYBOARD_TYPE, keyCodeAndroidToJava.keyCodeMap.get(keyCode)));
+        }
 
         return false;
     }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import nl.broslo.brosloremotemouse.utility.KeyCodeAndroidToJava;
+
 /**
  * Created by Bryan on 12-12-2014.
  */
@@ -16,6 +18,8 @@ public class MainActivity extends Activity {
     public SharedPreferences mSettings;
     public static final String SETTINGS_IP_ADDRESS = "Settings Ip Address";
     public static final String SETTINGS_PORT = "Settings Port";
+
+    public static final KeyCodeAndroidToJava keyCodeAndroidToJava = new KeyCodeAndroidToJava();
 
     protected String ipAddress;
     protected int port = 23713;
