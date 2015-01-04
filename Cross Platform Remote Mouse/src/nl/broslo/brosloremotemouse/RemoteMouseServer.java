@@ -78,8 +78,8 @@ public class RemoteMouseServer implements Runnable {
                                 double newX = mousePointerLocation.getX() + (mouseMovement.getMovementX() * movementMultiplier);
                                 double newY = mousePointerLocation.getY() + (mouseMovement.getMovementY() * movementMultiplier);
 
-                                System.out.println("\nX: " + newX + " -> " + mousePointerLocation.getX() + " + " + mouseMovement.getMovementX() +
-                                        "\nY: " + newY + " -> "  + mousePointerLocation.getX() + " + " + mouseMovement.getMovementX());
+//                                System.out.println("\nX: " + newX + " -> " + mousePointerLocation.getX() + " + " + mouseMovement.getMovementX() +
+//                                        "\nY: " + newY + " -> "  + mousePointerLocation.getX() + " + " + mouseMovement.getMovementX());
 
                                   robot.mouseMove((int) newX, (int) newY);
 
